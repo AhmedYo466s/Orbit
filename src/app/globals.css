@@ -1,0 +1,84 @@
+:root {
+  /* اللون المميز الوحيد */
+  --color-accent: #0f7b6c;
+  --color-accent-hover: #0b6659;
+  --color-accent-subtle: #e8f3f1;
+
+  /* الرمادي المحايد */
+  --color-bg: #ffffff;
+  --color-surface: #f6f7f8;
+  --color-border: #dfe2e5;
+  --color-text: #1f2328;
+  --color-text-muted: #5b636b;
+
+  /* حالات */
+  --color-danger: #c62828;
+  --color-warning: #b26a00;
+
+  /* أحجام الخطوط */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 48px;
+
+  /* مسافات أساسها 4 بكسل */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* الحواف والعرض */
+  --radius: 6px;
+  --container-max: 1200px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-inter), var(--font-arabic), system-ui, sans-serif;
+  font-size: var(--text-md);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
