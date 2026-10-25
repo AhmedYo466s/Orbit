@@ -2,6 +2,7 @@ import Link from "next/link";
 import "@/components/site.css";
 import Modules from "@/components/Modules";
 import HowItWorks from "@/components/HowItWorks";
+import Pricing from "@/components/Pricing";
 
 export default function HomePage() {
   return (
@@ -48,6 +49,7 @@ export default function HomePage() {
 
         <Modules />
         <HowItWorks />
+        <Pricing />
       </main>
     </>
   );
