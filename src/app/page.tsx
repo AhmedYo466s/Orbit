@@ -1,5 +1,6 @@
 import Link from "next/link";
 import "@/components/site.css";
+import Modules from "@/components/Modules";
 
 export default function HomePage() {
   return (
@@ -43,6 +44,8 @@ export default function HomePage() {
             </p>
           </div>
         </section>
+
+        <Modules />
       </main>
     </>
   );
