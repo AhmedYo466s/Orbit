@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
+import "@/components/site.css";
+import "@/components/extra.css";
+import SiteHeader from "@/components/SiteHeader";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,7 +29,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ar" dir="rtl">
       <body className={`${inter.variable} ${plexArabic.variable}`}>
-        {children}
+        <SiteHeader />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
