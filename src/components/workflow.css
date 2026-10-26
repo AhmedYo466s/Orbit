@@ -1,0 +1,77 @@
+.steps {
+  margin: 0;
+  padding-inline-start: var(--space-6);
+}
+
+.steps li {
+  padding-block: var(--space-2);
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.run {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-3);
+}
+
+.run__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.run__events {
+  list-style: none;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.run__events li {
+  padding-block: var(--space-1);
+}
+
+.row__form input[type="text"] {
+  font: inherit;
+  font-size: var(--text-sm);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.bar {
+  height: 8px;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.bar > span {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+}
+
+.period {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.period a.is-active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
