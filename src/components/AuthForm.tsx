@@ -122,6 +122,11 @@ export default function AuthForm({ mode }: { mode: "login" | "signup" }) {
             {busy ? "جار التنفيذ" : mode === "login" ? "دخول" : "إنشاء الحساب"}
           </button>
         </form>
+        {mode === "login" && (
+          <p>
+            <Link href="/forgot-password">نسيت كلمة المرور؟</Link>
+          </p>
+        )}
         <p>
           {mode === "login" ? (
             <>
