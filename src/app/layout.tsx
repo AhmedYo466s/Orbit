@@ -4,8 +4,10 @@ import { Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import "@/components/site.css";
 import "@/components/extra.css";
+import "@/components/app.css";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
+import ChromeGate from "@/components/ChromeGate";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,9 +31,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ar" dir="rtl">
       <body className={`${inter.variable} ${plexArabic.variable}`}>
-        <SiteHeader />
-        <main>{children}</main>
-        <Footer />
+        <ChromeGate header={<SiteHeader />} footer={<Footer />}>
+          {children}
+        </ChromeGate>
       </body>
     </html>
   );
