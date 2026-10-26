@@ -11,10 +11,15 @@ type Entry = {
 const phrases: Record<string, string> = {
   "created:tasks": "أنشأ مهمة",
   "created:projects": "أنشأ مشروعًا",
+  "created:workflows": "أنشأ سير عمل",
   "invited:invitations": "أضاف دعوة موظف",
   "accepted:invitations": "قبل دعوة الانضمام",
   "role_changed:memberships": "غيّر دور عضو",
   "disabled:memberships": "عطّل عضوية",
+  "started:workflow_runs": "بدأ تنفيذ سير عمل",
+  "completed:workflow_runs": "أنجز خطوة في سير عمل",
+  "approved:workflow_runs": "وافق على خطوة في سير عمل",
+  "rejected:workflow_runs": "رفض خطوة في سير عمل",
 };
 
 export default async function ActivityPage() {
