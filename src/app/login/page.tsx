@@ -1,11 +1,7 @@
-import StaticPage from "@/components/StaticPage";
+import AuthForm from "@/components/AuthForm";
 
 export const metadata = { title: "تسجيل الدخول | ORBIT" };
 
 export default function LoginPage() {
-  return (
-    <StaticPage title="تسجيل الدخول">
-      <p>تسجيل الدخول غير متاح بعد. سيُضاف في مرحلة لاحقة بعد إعداد المصادقة.</p>
-    </StaticPage>
-  );
+  return <AuthForm mode="login" />;
 }
