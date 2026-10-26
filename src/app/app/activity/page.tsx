@@ -8,10 +8,13 @@ type Entry = {
   created_at: string;
 };
 
-const actions: Record<string, string> = { created: "أنشأ" };
-const entities: Record<string, string> = {
-  tasks: "مهمة",
-  projects: "مشروعًا",
+const phrases: Record<string, string> = {
+  "created:tasks": "أنشأ مهمة",
+  "created:projects": "أنشأ مشروعًا",
+  "invited:invitations": "أضاف دعوة موظف",
+  "accepted:invitations": "قبل دعوة الانضمام",
+  "role_changed:memberships": "غيّر دور عضو",
+  "disabled:memberships": "عطّل عضوية",
 };
 
 export default async function ActivityPage() {
@@ -55,7 +58,7 @@ export default async function ActivityPage() {
               <div className="row__main">
                 <strong>
                   {(e.actor_id && names.get(e.actor_id)) || "مستخدم"}{" "}
-                  {actions[e.action] ?? e.action} {entities[e.entity] ?? e.entity}
+                  {phrases[`${e.action}:${e.entity}`] ?? `${e.action} ${e.entity}`}
                 </strong>
                 <span className="row__meta">
                   {new Date(e.created_at).toLocaleString("ar-EG", {
