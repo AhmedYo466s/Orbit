@@ -11,6 +11,7 @@ function text(v: FormDataEntryValue | null) {
 }
 
 function failCode(message: string) {
+  if (message.includes("plan limit")) return "limit";
   if (message.includes("draft only")) return "locked";
   if (message.includes("no steps")) return "nosteps";
   if (message.includes("not active")) return "inactive";
@@ -34,8 +35,9 @@ export async function createWorkflow(formData: FormData) {
     p_name: name,
     p_description: description,
   });
+  if (error) redirect(`/app/workflows?error=${failCode(error.message)}`);
   const id = String(data ?? "");
-  if (error || !UUID.test(id)) redirect("/app/workflows?error=failed");
+  if (!UUID.test(id)) redirect("/app/workflows?error=failed");
 
   revalidatePath("/app/workflows");
   redirect(`/app/workflows/${id}`);
