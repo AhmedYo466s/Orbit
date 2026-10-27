@@ -20,6 +20,7 @@ export const errorMessages: Record<string, string> = {
   invalid: "البيانات المدخلة غير صالحة.",
   forbidden: "ليست لديك صلاحية لهذا الإجراء.",
   failed: "تعذر تنفيذ العملية. حاول مرة أخرى.",
+  limit: "تم الوصول إلى حد الباقة الحالية. تواصل مع إدارة ORBIT لترقية الباقة.",
 };
 
 export async function getContext() {
