@@ -16,6 +16,10 @@ function text(v: FormDataEntryValue | null) {
   return String(v ?? "").trim();
 }
 
+function isLimit(message: string) {
+  return message.includes("plan limit");
+}
+
 export async function signOut() {
   const supabase = createClient();
   await supabase.auth.signOut();
@@ -51,7 +55,9 @@ export async function acceptInvitation(formData: FormData) {
   if (!UUID.test(id)) redirect("/app/new-company?error=invalid");
 
   const { error } = await supabase.rpc("accept_invitation", { inv: id });
-  if (error) redirect("/app/new-company?error=failed");
+  if (error) {
+    redirect(`/app/new-company?error=${isLimit(error.message) ? "limit" : "failed"}`);
+  }
 
   revalidatePath("/app");
   redirect("/app");
@@ -72,7 +78,9 @@ export async function createProject(formData: FormData) {
     description,
     created_by: user.id,
   });
-  if (error) redirect("/app/projects?error=failed");
+  if (error) {
+    redirect(`/app/projects?error=${isLimit(error.message) ? "limit" : "failed"}`);
+  }
 
   revalidatePath("/app/projects");
   revalidatePath("/app");
@@ -157,7 +165,8 @@ export async function inviteMember(formData: FormData) {
     const dup =
       error.message.includes("already member") ||
       error.message.includes("duplicate key");
-    redirect(`/app/team?error=${dup ? "exists" : "failed"}`);
+    const code = isLimit(error.message) ? "limit" : dup ? "exists" : "failed";
+    redirect(`/app/team?error=${code}`);
   }
 
   revalidatePath("/app/team");
