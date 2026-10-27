@@ -25,6 +25,7 @@ export const workflowMessages: Record<string, string> = {
   nosteps: "أضف خطوة واحدة على الأقل قبل التفعيل.",
   inactive: "سير العمل غير نشط.",
   finished: "هذا التنفيذ انتهى بالفعل.",
+  limit: "تم الوصول إلى حد الباقة الحالية. تواصل مع إدارة ORBIT لترقية الباقة.",
 };
 
 export const workflowOk: Record<string, string> = {
