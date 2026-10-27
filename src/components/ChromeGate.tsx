@@ -12,7 +12,8 @@ export default function ChromeGate({
   footer: ReactNode;
   children: ReactNode;
 }) {
-  const inApp = (usePathname() ?? "").startsWith("/app");
+  const path = usePathname() ?? "";
+  const inApp = path.startsWith("/app") || path.startsWith("/admin");
   return (
     <>
       {!inApp && header}
