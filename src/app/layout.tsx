@@ -1,40 +1,31 @@
-import type { Metadata } from "next";
+import Link from "next/link";
 import type { ReactNode } from "react";
-import { Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
-import "./globals.css";
-import "@/components/site.css";
-import "@/components/extra.css";
-import "@/components/app.css";
-import SiteHeader from "@/components/SiteHeader";
-import Footer from "@/components/Footer";
-import ChromeGate from "@/components/ChromeGate";
+import { signOut } from "./actions";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const plexArabic = IBM_Plex_Sans_Arabic({
-  subsets: ["arabic"],
-  weight: ["400", "500", "600"],
-  variable: "--font-arabic",
-  display: "swap",
-});
-
-export const metadata: Metadata = {
-  title: "ORBIT",
-  description: "منصة لإدارة عمليات الشركات والمهام وسير العمل",
-};
-
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function AppLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ar" dir="rtl">
-      <body className={`${inter.variable} ${plexArabic.variable}`}>
-        <ChromeGate header={<SiteHeader />} footer={<Footer />}>
-          {children}
-        </ChromeGate>
-      </body>
-    </html>
+    <div className="appshell">
+      <div className="container appshell__bar">
+        <Link href="/app" className="logo">
+          ORBIT
+        </Link>
+        <nav className="appnav" aria-label="التنقل داخل المنصة">
+          <Link href="/app">نظرة عامة</Link>
+          <Link href="/app/projects">المشروعات</Link>
+          <Link href="/app/tasks">المهام</Link>
+          <Link href="/app/workflows">سير العمل</Link>
+          <Link href="/app/analytics">التحليلات</Link>
+          <Link href="/app/team">الفريق</Link>
+          <Link href="/app/plan">الاشتراك</Link>
+          <Link href="/app/activity">السجل</Link>
+        </nav>
+        <form action={signOut}>
+          <button className="btn btn--ghost" type="submit">
+            تسجيل الخروج
+          </button>
+        </form>
+      </div>
+      <div className="container appshell__body">{children}</div>
+    </div>
   );
 }
