@@ -16,6 +16,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           <Link href="/app/workflows">سير العمل</Link>
           <Link href="/app/analytics">التحليلات</Link>
           <Link href="/app/team">الفريق</Link>
+          <Link href="/app/plan">الاشتراك</Link>
           <Link href="/app/activity">السجل</Link>
         </nav>
         <form action={signOut}>
