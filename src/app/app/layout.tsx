@@ -1,31 +1,45 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
-import { signOut } from "./actions";
+import "@/components/shell.css";
+import AppShell from "@/components/AppShell";
+import { createClient } from "@/lib/supabase/server";
 
-export default function AppLayout({ children }: { children: ReactNode }) {
+export default async function AppLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  let role: string | null = null;
+  let companyName = "";
+
+  if (user) {
+    const { data } = await supabase
+      .from("memberships")
+      .select("role, company_id")
+      .eq("user_id", user.id)
+      .eq("status", "active")
+      .order("created_at", { ascending: true })
+      .limit(1)
+      .maybeSingle();
+    const m = data as unknown as { role: string; company_id: string } | null;
+    if (m) {
+      role = m.role;
+      const { data: c } = await supabase
+        .from("companies")
+        .select("name")
+        .eq("id", m.company_id)
+        .maybeSingle();
+      companyName = (c as unknown as { name: string } | null)?.name ?? "";
+    }
+  }
+
   return (
-    <div className="appshell">
-      <div className="container appshell__bar">
-        <Link href="/app" className="logo">
-          ORBIT
-        </Link>
-        <nav className="appnav" aria-label="التنقل داخل المنصة">
-          <Link href="/app">نظرة عامة</Link>
-          <Link href="/app/projects">المشروعات</Link>
-          <Link href="/app/tasks">المهام</Link>
-          <Link href="/app/workflows">سير العمل</Link>
-          <Link href="/app/analytics">التحليلات</Link>
-          <Link href="/app/team">الفريق</Link>
-          <Link href="/app/plan">الاشتراك</Link>
-          <Link href="/app/activity">السجل</Link>
-        </nav>
-        <form action={signOut}>
-          <button className="btn btn--ghost" type="submit">
-            تسجيل الخروج
-          </button>
-        </form>
-      </div>
-      <div className="container appshell__body">{children}</div>
-    </div>
+    <AppShell role={role} companyName={companyName}>
+      {children}
+    </AppShell>
   );
 }
